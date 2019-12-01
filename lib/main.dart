@@ -3,10 +3,12 @@ import 'package:provider/provider.dart';
 import 'package:shop/providers/Cart.provider.dart';
 import 'package:shop/providers/orders.provider.dart';
 import 'package:shop/screens/cart.screen.dart';
+import 'package:shop/screens/edit.product.screen.dart';
 import 'package:shop/screens/orders.screen.dart';
 
 import 'package:shop/screens/product.detail.screen.dart';
 import 'package:shop/screens/products.overview.screen.dart';
+import 'package:shop/screens/user.products.screen.dart';
 import './providers/products.provider.dart';
 
 void main() => runApp(MyApp());
@@ -39,7 +41,9 @@ class MyApp extends StatelessWidget {
           "/": (ctx) => ProductsOverviewScreen(),
           ProductDetailScreen.routeName: (ctx) => ProductDetailScreen(),
           CartScreen.routeName: (ctx) => CartScreen(),
-          OrdersScreen.routeName: (ctx) => OrdersScreen()
+          OrdersScreen.routeName: (ctx) => OrdersScreen(),
+          UserProductsScreen.routeName: (ctx) => UserProductsScreen(),
+          EditProductScreen.routeName: (ctx) => EditProductScreen()
         },
         //onUnknownRoute: (ctx) =>
       ),
