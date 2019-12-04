@@ -8,23 +8,29 @@ import 'package:shop/widgets/user.product.item.dart';
 class UserProductsScreen extends StatelessWidget {
   static const routeName = "products-scren";
 
+  Future<void> refreshProducts(BuildContext context) async {
+    await Provider.of<ProductsProvider>(context).fetchAndSetProduct();
+  }
+
   @override
   Widget build(BuildContext context) {
     final productsData = Provider.of<ProductsProvider>(context);
     return Scaffold(
-        appBar: AppBar(
-          title: Text("Your products"),
-          actions: <Widget>[
-            IconButton(
-              icon: Icon(Icons.add),
-              onPressed: () {
-                Navigator.of(context).pushNamed(EditProductScreen.routeName);
-              },
-            )
-          ],
-        ),
-        drawer: AppDrawer(),
-        body: Padding(
+      appBar: AppBar(
+        title: Text("Your products"),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.add),
+            onPressed: () {
+              Navigator.of(context).pushNamed(EditProductScreen.routeName);
+            },
+          )
+        ],
+      ),
+      drawer: AppDrawer(),
+      body: RefreshIndicator(
+        onRefresh: () => refreshProducts(context),
+        child: Padding(
           padding: EdgeInsets.all(10),
           child: ListView.builder(
             itemCount: productsData.items.length,
@@ -41,6 +47,8 @@ class UserProductsScreen extends StatelessWidget {
               );
             },
           ),
-        ));
+        ),
+      ),
+    );
   }
 }
